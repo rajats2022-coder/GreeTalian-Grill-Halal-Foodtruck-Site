@@ -240,17 +240,8 @@
 </head>
 <body class="grain">
 
-<!-- iOS status bar cover — blocks content above nav -->
-<div style="position:fixed;top:0;left:0;right:0;height:max(env(safe-area-inset-top,0px),59px);background:#1A1410;z-index:49;display:none;" id="ios-status-cover"></div>
-<script>
-// Only show on mobile/touch devices to avoid desktop impact
-if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
-    document.getElementById('ios-status-cover').style.display = 'block';
-}
-</script>
-
 <!-- NAV -->
-<nav class="nav-glass fixed left-0 right-0 z-50" style="top: env(safe-area-inset-top, 0px);">
+<nav class="nav-glass fixed top-0 left-0 right-0 z-50">
     <div class="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between h-16 md:h-18">
         <a href="#" onclick="event.preventDefault(); if(window._skipHero) { window._skipHero(function(){ document.getElementById('hero-content').scrollIntoView({behavior:'smooth'}); }); } else { window.scrollTo({top:0,behavior:'smooth'}); }" class="font-display text-xl md:text-2xl font-bold tracking-tight text-cream">
             GreeTalian <span class="text-warm-400">Grill</span>
