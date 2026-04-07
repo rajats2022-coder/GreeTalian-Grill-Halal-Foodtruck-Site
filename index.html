@@ -86,7 +86,7 @@
         .img-hover:hover img { transform: scale(1.06); }
 
         .nav-glass {
-            background: rgba(26, 20, 16, 0.85);
+            background: rgba(26, 20, 16, 0.97);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(212, 168, 83, 0.12);
@@ -171,10 +171,10 @@
             line-height: 0.95;
             letter-spacing: -0.03em;
             transition: none;
-            mix-blend-mode: difference;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.7), 0 4px 40px rgba(0,0,0,0.5);
         }
-        .scroll-hero__title-line--1 { font-size: clamp(3rem, 8vw, 7rem); }
-        .scroll-hero__title-line--2 { font-size: clamp(3rem, 8vw, 7rem); font-style: italic; color: #D4A853; }
+        .scroll-hero__title-line--1 { font-size: clamp(2.5rem, 8vw, 7rem); }
+        .scroll-hero__title-line--2 { font-size: clamp(2.5rem, 8vw, 7rem); font-style: italic; color: #D4A853; }
 
         @keyframes titleRise {
             from { opacity: 0; transform: translateY(28px); }
@@ -185,7 +185,7 @@
 
         .scroll-hero__hint {
             position: absolute; z-index: 5;
-            bottom: 7%; left: 50%;
+            bottom: 10%; left: 50%;
             transform: translateX(-50%);
             text-align: center;
             transition: opacity 0.3s ease;
@@ -243,7 +243,7 @@
 <!-- NAV -->
 <nav class="nav-glass fixed top-0 left-0 right-0 z-50">
     <div class="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between h-16 md:h-18">
-        <a href="#" class="font-display text-xl md:text-2xl font-bold tracking-tight text-cream">
+        <a href="#" onclick="event.preventDefault(); if(window._skipHero) { window._skipHero(function(){ document.getElementById('hero-content').scrollIntoView({behavior:'smooth'}); }); } else { window.scrollTo({top:0,behavior:'smooth'}); }" class="font-display text-xl md:text-2xl font-bold tracking-tight text-cream">
             GreeTalian <span class="text-warm-400">Grill</span>
         </a>
         <div class="hidden md:flex items-center gap-8 text-sm font-medium text-cream/70">
@@ -716,7 +716,7 @@
 <div class="divider-warm max-w-7xl mx-auto"></div>
 
 <!-- GALLERY -->
-<section id="gallery" class="py-20 md:py-32 relative overflow-hidden">
+<section id="gallery" class="py-20 md:py-32 relative overflow-x-clip">
     <div class="max-w-7xl mx-auto px-5 md:px-8">
         <div class="text-center mb-6">
             <span class="reveal text-warm-400 text-xs font-medium tracking-[0.2em] uppercase">From Our Kitchen</span>
@@ -725,7 +725,7 @@
         </div>
 
         <!-- Circular 3D Carousel -->
-        <div class="reveal" style="height: 520px; perspective: 1800px; overflow: hidden;">
+        <div class="reveal" style="height: 440px; perspective: 1600px; overflow: visible;">
             <div id="carousel-ring" style="position: relative; width: 100%; height: 100%; transform-style: preserve-3d; display: flex; align-items: center; justify-content: center;">
             </div>
         </div>
@@ -758,9 +758,9 @@
         const count = items.length;
         const angleStep = 360 / count;
         const isMobile = window.innerWidth < 768;
-        const radius = isMobile ? 280 : 520;
-        const cardW = isMobile ? 200 : 280;
-        const cardH = isMobile ? 260 : 370;
+        const radius = isMobile ? 300 : 520;
+        const cardW = isMobile ? 220 : 280;
+        const cardH = isMobile ? 290 : 370;
         let currentAngle = 0;
         let autoSpeed = 0.15;
         let isDragging = false;
@@ -854,7 +854,7 @@
         <!-- Carousel container -->
         <div class="reveal relative overflow-hidden">
             <div id="review-carousel" class="flex" style="transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);">
-                <div class="w-full flex-shrink-0 px-4">
+                <div class="w-full flex-shrink-0 px-10 md:px-14">
                     <div class="max-w-2xl mx-auto text-center">
                         <div class="flex items-center justify-center gap-1 mb-4">
                             <svg class="star w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -867,7 +867,7 @@
                         <span class="text-cream/50 text-sm font-medium">— George Smith</span>
                     </div>
                 </div>
-                <div class="w-full flex-shrink-0 px-4">
+                <div class="w-full flex-shrink-0 px-10 md:px-14">
                     <div class="max-w-2xl mx-auto text-center">
                         <div class="flex items-center justify-center gap-1 mb-4">
                             <svg class="star w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -880,7 +880,7 @@
                         <span class="text-cream/50 text-sm font-medium">— NSA</span>
                     </div>
                 </div>
-                <div class="w-full flex-shrink-0 px-4">
+                <div class="w-full flex-shrink-0 px-10 md:px-14">
                     <div class="max-w-2xl mx-auto text-center">
                         <div class="flex items-center justify-center gap-1 mb-4">
                             <svg class="star w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -893,7 +893,7 @@
                         <span class="text-cream/50 text-sm font-medium">— Zeina Hasan</span>
                     </div>
                 </div>
-                <div class="w-full flex-shrink-0 px-4">
+                <div class="w-full flex-shrink-0 px-10 md:px-14">
                     <div class="max-w-2xl mx-auto text-center">
                         <div class="flex items-center justify-center gap-1 mb-4">
                             <svg class="star w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -906,7 +906,7 @@
                         <span class="text-cream/50 text-sm font-medium">— Christa Saghaei</span>
                     </div>
                 </div>
-                <div class="w-full flex-shrink-0 px-4">
+                <div class="w-full flex-shrink-0 px-10 md:px-14">
                     <div class="max-w-2xl mx-auto text-center">
                         <div class="flex items-center justify-center gap-1 mb-4">
                             <svg class="star w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -919,7 +919,7 @@
                         <span class="text-cream/50 text-sm font-medium">— N Odah</span>
                     </div>
                 </div>
-                <div class="w-full flex-shrink-0 px-4">
+                <div class="w-full flex-shrink-0 px-10 md:px-14">
                     <div class="max-w-2xl mx-auto text-center">
                         <div class="flex items-center justify-center gap-1 mb-4">
                             <svg class="star w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -934,11 +934,11 @@
                 </div>
             </div>
             <!-- Navigation arrows -->
-            <button onclick="moveCarousel(-1)" class="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-dark-800/80 border border-warm-400/15 flex items-center justify-center text-cream/60 hover:text-warm-400 hover:border-warm-400/30 transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-warm-400/50" aria-label="Previous review">
-                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+            <button onclick="moveCarousel(-1)" class="absolute -left-1 md:left-0 top-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 rounded-full bg-earth-900/90 border border-warm-400/15 flex items-center justify-center text-cream/60 hover:text-warm-400 hover:border-warm-400/30 transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-warm-400/50 z-10" aria-label="Previous review">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
             </button>
-            <button onclick="moveCarousel(1)" class="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-dark-800/80 border border-warm-400/15 flex items-center justify-center text-cream/60 hover:text-warm-400 hover:border-warm-400/30 transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-warm-400/50" aria-label="Next review">
-                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+            <button onclick="moveCarousel(1)" class="absolute -right-1 md:right-0 top-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 rounded-full bg-earth-900/90 border border-warm-400/15 flex items-center justify-center text-cream/60 hover:text-warm-400 hover:border-warm-400/30 transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-warm-400/50 z-10" aria-label="Next review">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
             </button>
         </div>
         <!-- Dots + View All -->
@@ -1134,8 +1134,8 @@
             const p = scrollProgress;
 
             // Media dimensions: starts small, expands to viewport
-            const startW = mobile ? 200 : 280;
-            const startH = mobile ? 260 : 360;
+            const startW = mobile ? 170 : 280;
+            const startH = mobile ? 220 : 360;
             const endW = window.innerWidth;
             const endH = window.innerHeight;
 
