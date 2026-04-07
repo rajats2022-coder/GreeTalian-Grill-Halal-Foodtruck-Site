@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>GreeTalian Grill Food Truck | Authentic Middle Eastern Food | Raleigh, NC</title>
     <meta name="description" content="Best shawarma and kunafa in Raleigh, NC. Family-owned food truck by Chef Ayman. Open 7 days at 6 PM. Halal certified. Catering for 1,200+ people.">
     <meta name="theme-color" content="#1A1410">
@@ -241,7 +241,9 @@
 <body class="grain">
 
 <!-- NAV -->
-<nav class="nav-glass fixed top-0 left-0 right-0 z-50">
+<nav class="nav-glass fixed top-0 left-0 right-0 z-50" style="padding-top: env(safe-area-inset-top, 0px);">
+    <!-- Safe area cover for mobile status bar -->
+    <div style="position:absolute;top:0;left:0;right:0;height:env(safe-area-inset-top,0px);background:#1A1410;z-index:51;"></div>
     <div class="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between h-16 md:h-18">
         <a href="#" onclick="event.preventDefault(); if(window._skipHero) { window._skipHero(function(){ document.getElementById('hero-content').scrollIntoView({behavior:'smooth'}); }); } else { window.scrollTo({top:0,behavior:'smooth'}); }" class="font-display text-xl md:text-2xl font-bold tracking-tight text-cream">
             GreeTalian <span class="text-warm-400">Grill</span>
@@ -774,12 +776,12 @@
             const strip = document.getElementById('carousel-strip');
             items.forEach((item) => {
                 const card = document.createElement('div');
-                card.style.cssText = 'width:260px;flex-shrink:0;scroll-snap-align:center;';
-                card.innerHTML = '<div style="position:relative;width:100%;height:340px;border-radius:12px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.5),0 2px 8px rgba(212,168,83,0.08);border:1px solid rgba(212,168,83,0.12);">' +
+                card.style.cssText = 'width:180px;flex-shrink:0;scroll-snap-align:center;';
+                card.innerHTML = '<div style="position:relative;width:100%;height:240px;border-radius:10px;overflow:hidden;box-shadow:0 6px 24px rgba(0,0,0,0.4),0 2px 6px rgba(212,168,83,0.06);border:1px solid rgba(212,168,83,0.12);">' +
                     '<img src="' + item.src + '" alt="' + item.title + '" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="lazy">' +
-                    '<div style="position:absolute;bottom:0;left:0;width:100%;padding:16px;background:linear-gradient(to top,rgba(26,20,16,0.92),rgba(26,20,16,0.4),transparent);color:#F5EDE0;">' +
-                    '<h3 style="font-family:Playfair Display,serif;font-size:16px;font-weight:700;letter-spacing:-0.02em;">' + item.title + '</h3>' +
-                    '<p style="font-size:11px;opacity:0.65;margin-top:4px;line-height:1.4;">' + item.desc + '</p>' +
+                    '<div style="position:absolute;bottom:0;left:0;width:100%;padding:12px;background:linear-gradient(to top,rgba(26,20,16,0.92),rgba(26,20,16,0.4),transparent);color:#F5EDE0;">' +
+                    '<h3 style="font-family:Playfair Display,serif;font-size:13px;font-weight:700;letter-spacing:-0.02em;">' + item.title + '</h3>' +
+                    '<p style="font-size:10px;opacity:0.65;margin-top:3px;line-height:1.4;">' + item.desc + '</p>' +
                     '</div></div>';
                 strip.appendChild(card);
             });
