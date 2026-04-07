@@ -115,7 +115,11 @@
 
         .masonry { columns: 2; column-gap: 14px; }
         @media (min-width: 768px) { .masonry { columns: 3; column-gap: 16px; } }
-        @media (min-width: 1024px) { .masonry { columns: 4; column-gap: 16px; } }
+        @media (min-width: 1024px) { .masonry { columns: 4; column-gap: 18px; } }
+
+        .gallery-card img { width: 100%; display: block; }
+        @media (min-width: 768px) { .gallery-card img { max-height: 360px; object-fit: cover; } }
+        @media (min-width: 1024px) { .gallery-card img { max-height: 320px; } }
 
         /* Lightbox */
         .lightbox {
