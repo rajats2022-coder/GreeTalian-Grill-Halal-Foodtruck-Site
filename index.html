@@ -721,20 +721,14 @@
         <div class="text-center mb-6">
             <span class="reveal text-warm-400 text-xs font-medium tracking-[0.2em] uppercase">From Our Kitchen</span>
             <h2 class="reveal reveal-delay-1 font-display text-4xl md:text-6xl font-bold tracking-tighter mt-3">Our Food Gallery</h2>
-            <p class="reveal reveal-delay-2 text-cream/40 text-sm mt-3 hidden md:block">Drag or scroll to spin the carousel</p>
-            <p class="reveal reveal-delay-2 text-cream/40 text-sm mt-3 md:hidden">Swipe to browse</p>
+            <p class="reveal reveal-delay-2 text-cream/40 text-sm mt-3 hidden md:block">Drag to spin the carousel</p>
+            <p class="reveal reveal-delay-2 text-cream/40 text-sm mt-3 md:hidden">Swipe to spin</p>
         </div>
 
-        <!-- 3D Carousel (desktop) / Horizontal scroll (mobile) -->
+        <!-- 3D Carousel (all devices) -->
         <div id="carousel-container" class="reveal">
-            <!-- Desktop: 3D ring -->
-            <div id="carousel-desktop" class="hidden md:block" style="height: 440px; perspective: 1600px; overflow: visible;">
+            <div id="carousel-desktop" style="height: 340px; perspective: 1200px; overflow: visible;">
                 <div id="carousel-ring" style="position: relative; width: 100%; height: 100%; transform-style: preserve-3d; display: flex; align-items: center; justify-content: center;">
-                </div>
-            </div>
-            <!-- Mobile: horizontal scroll strip -->
-            <div id="carousel-mobile" class="md:hidden overflow-x-auto pb-4 -mx-5 px-5" style="scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;">
-                <div id="carousel-strip" class="flex gap-4" style="width: max-content;">
                 </div>
             </div>
         </div>
@@ -747,10 +741,6 @@
             </a>
         </div>
     </div>
-
-    <style>
-        #carousel-mobile::-webkit-scrollbar { display: none; }
-    </style>
 
     <script>
     (function() {
@@ -767,88 +757,97 @@
             { src: 'photos/IMG_2975.jpg', title: 'The Food Truck', desc: 'Ayman\'s Halal Grill — Raleigh\'s favorite food truck' },
         ];
 
-        const isMobile = window.innerWidth < 768;
+        const mobile = window.innerWidth < 768;
+        const ring = document.getElementById('carousel-ring');
+        const container = document.getElementById('carousel-desktop');
+        const count = items.length;
+        const angleStep = 360 / count;
+        const radius = mobile ? 280 : 520;
+        const cardW = mobile ? 160 : 280;
+        const cardH = mobile ? 220 : 370;
+        const fontSize = mobile ? 14 : 20;
+        const descSize = mobile ? 10 : 13;
+        const pad = mobile ? 12 : 16;
+        let currentAngle = 0;
+        let autoSpeed = 0.15;
+        let isDragging = false;
+        let dragStartX = 0;
+        let dragStartAngle = 0;
 
-        if (isMobile) {
-            // ── MOBILE: flat horizontal scroll ──
-            const strip = document.getElementById('carousel-strip');
-            items.forEach((item) => {
-                const card = document.createElement('div');
-                card.style.cssText = 'width:180px;flex-shrink:0;scroll-snap-align:center;';
-                card.innerHTML = '<div style="position:relative;width:100%;height:240px;border-radius:10px;overflow:hidden;box-shadow:0 6px 24px rgba(0,0,0,0.4),0 2px 6px rgba(212,168,83,0.06);border:1px solid rgba(212,168,83,0.12);">' +
-                    '<img src="' + item.src + '" alt="' + item.title + '" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="lazy">' +
-                    '<div style="position:absolute;bottom:0;left:0;width:100%;padding:12px;background:linear-gradient(to top,rgba(26,20,16,0.92),rgba(26,20,16,0.4),transparent);color:#F5EDE0;">' +
-                    '<h3 style="font-family:Playfair Display,serif;font-size:13px;font-weight:700;letter-spacing:-0.02em;">' + item.title + '</h3>' +
-                    '<p style="font-size:10px;opacity:0.65;margin-top:3px;line-height:1.4;">' + item.desc + '</p>' +
-                    '</div></div>';
-                strip.appendChild(card);
-            });
-        } else {
-            // ── DESKTOP: 3D ring carousel ──
-            const ring = document.getElementById('carousel-ring');
-            const count = items.length;
-            const angleStep = 360 / count;
-            const radius = 520;
-            const cardW = 280;
-            const cardH = 370;
-            let currentAngle = 0;
-            let autoSpeed = 0.15;
-            let isDragging = false;
-            let dragStartX = 0;
-            let dragStartAngle = 0;
-
-            items.forEach((item, i) => {
-                const card = document.createElement('div');
-                card.style.cssText = 'position:absolute;width:' + cardW + 'px;height:' + cardH + 'px;left:50%;top:50%;margin-left:-' + (cardW/2) + 'px;margin-top:-' + (cardH/2) + 'px;transform-style:preserve-3d;transition:opacity 0.3s linear;';
-                card.style.transform = 'rotateY(' + (i * angleStep) + 'deg) translateZ(' + radius + 'px)';
-                card.innerHTML = '<div style="position:relative;width:100%;height:100%;border-radius:12px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.5),0 2px 8px rgba(212,168,83,0.08);border:1px solid rgba(212,168,83,0.12);">' +
-                    '<img src="' + item.src + '" alt="' + item.title + '" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="lazy">' +
-                    '<div style="position:absolute;bottom:0;left:0;width:100%;padding:16px;background:linear-gradient(to top,rgba(26,20,16,0.92),rgba(26,20,16,0.4),transparent);color:#F5EDE0;">' +
-                    '<h3 style="font-family:Playfair Display,serif;font-size:20px;font-weight:700;letter-spacing:-0.02em;">' + item.title + '</h3>' +
-                    '<p style="font-size:13px;opacity:0.65;margin-top:4px;line-height:1.4;">' + item.desc + '</p>' +
-                    '</div></div>';
-                ring.appendChild(card);
-            });
-
-            const cards = ring.children;
-
-            function render() {
-                ring.style.transform = 'rotateY(' + currentAngle + 'deg)';
-                for (let i = 0; i < cards.length; i++) {
-                    const itemAngle = i * angleStep;
-                    const total = ((currentAngle % 360) + 360) % 360;
-                    const rel = ((itemAngle + total) + 360) % 360;
-                    const norm = rel > 180 ? 360 - rel : rel;
-                    cards[i].style.opacity = Math.max(0.15, 1 - (norm / 180));
-                }
-            }
-
-            function autoRotate() {
-                if (!isDragging) currentAngle += autoSpeed;
-                render();
-                requestAnimationFrame(autoRotate);
-            }
-            requestAnimationFrame(autoRotate);
-
-            ring.parentElement.addEventListener('mousedown', function(e) {
-                isDragging = true;
-                dragStartX = e.clientX;
-                dragStartAngle = currentAngle;
-                ring.parentElement.style.cursor = 'grabbing';
-                e.preventDefault();
-            });
-            window.addEventListener('mousemove', function(e) {
-                if (!isDragging) return;
-                currentAngle = dragStartAngle + (e.clientX - dragStartX) * 0.3;
-            });
-            window.addEventListener('mouseup', function() {
-                isDragging = false;
-                ring.parentElement.style.cursor = 'grab';
-            });
-
-            ring.parentElement.style.cursor = 'grab';
-            render();
+        // Set container height for mobile
+        if (mobile) {
+            container.style.height = '300px';
+            container.style.perspective = '900px';
         }
+
+        items.forEach(function(item, i) {
+            var card = document.createElement('div');
+            card.style.cssText = 'position:absolute;width:' + cardW + 'px;height:' + cardH + 'px;left:50%;top:50%;margin-left:-' + (cardW/2) + 'px;margin-top:-' + (cardH/2) + 'px;transform-style:preserve-3d;transition:opacity 0.3s linear;';
+            card.style.transform = 'rotateY(' + (i * angleStep) + 'deg) translateZ(' + radius + 'px)';
+            card.innerHTML = '<div style="position:relative;width:100%;height:100%;border-radius:12px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.5),0 2px 8px rgba(212,168,83,0.08);border:1px solid rgba(212,168,83,0.12);">' +
+                '<img src="' + item.src + '" alt="' + item.title + '" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="lazy">' +
+                '<div style="position:absolute;bottom:0;left:0;width:100%;padding:' + pad + 'px;background:linear-gradient(to top,rgba(26,20,16,0.92),rgba(26,20,16,0.4),transparent);color:#F5EDE0;">' +
+                '<h3 style="font-family:Playfair Display,serif;font-size:' + fontSize + 'px;font-weight:700;letter-spacing:-0.02em;">' + item.title + '</h3>' +
+                '<p style="font-size:' + descSize + 'px;opacity:0.65;margin-top:4px;line-height:1.4;">' + item.desc + '</p>' +
+                '</div></div>';
+            ring.appendChild(card);
+        });
+
+        var cards = ring.children;
+
+        function render() {
+            ring.style.transform = 'rotateY(' + currentAngle + 'deg)';
+            for (var i = 0; i < cards.length; i++) {
+                var itemAngle = i * angleStep;
+                var total = ((currentAngle % 360) + 360) % 360;
+                var rel = ((itemAngle + total) + 360) % 360;
+                var norm = rel > 180 ? 360 - rel : rel;
+                cards[i].style.opacity = Math.max(0.15, 1 - (norm / 180));
+            }
+        }
+
+        function autoRotate() {
+            if (!isDragging) currentAngle += autoSpeed;
+            render();
+            requestAnimationFrame(autoRotate);
+        }
+        requestAnimationFrame(autoRotate);
+
+        // Mouse drag (desktop)
+        ring.parentElement.addEventListener('mousedown', function(e) {
+            isDragging = true;
+            dragStartX = e.clientX;
+            dragStartAngle = currentAngle;
+            ring.parentElement.style.cursor = 'grabbing';
+            e.preventDefault();
+        });
+        window.addEventListener('mousemove', function(e) {
+            if (!isDragging) return;
+            currentAngle = dragStartAngle + (e.clientX - dragStartX) * 0.3;
+        });
+        window.addEventListener('mouseup', function() {
+            isDragging = false;
+            ring.parentElement.style.cursor = 'grab';
+        });
+
+        // Touch drag (mobile)
+        var touchStartX = 0;
+        var touchStartAngle = 0;
+        ring.parentElement.addEventListener('touchstart', function(e) {
+            isDragging = true;
+            touchStartX = e.touches[0].clientX;
+            touchStartAngle = currentAngle;
+        }, { passive: true });
+        ring.parentElement.addEventListener('touchmove', function(e) {
+            if (!isDragging) return;
+            currentAngle = touchStartAngle + (e.touches[0].clientX - touchStartX) * 0.4;
+        }, { passive: true });
+        ring.parentElement.addEventListener('touchend', function() {
+            isDragging = false;
+        });
+
+        ring.parentElement.style.cursor = 'grab';
+        render();
     })();
     </script>
 </section>
