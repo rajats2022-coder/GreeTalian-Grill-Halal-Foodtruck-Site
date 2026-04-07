@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>About | GreeTalian Grill Food Truck | Raleigh, NC</title>
     <meta name="description" content="Meet Chef Ayman and the family behind GreeTalian Grill Food Truck. Authentic Jordanian flavors on Hillsborough Street, Raleigh, NC since 2019.">
     <meta name="theme-color" content="#1A1410">
@@ -68,10 +68,16 @@
         .reveal-delay-4 { transition-delay: 0.4s; }
 
         .nav-glass {
-            background: rgba(26, 20, 16, 0.97);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 99999;
+            background: #1A1410;
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(212, 168, 83, 0.12);
+            isolation: isolate;
         }
 
         .btn-warm {
@@ -153,7 +159,7 @@
 <body class="grain">
 
 <!-- NAV -->
-<nav class="nav-glass fixed top-0 left-0 right-0 z-50">
+<nav class="nav-glass" style="padding-top: env(safe-area-inset-top, 0px);">
     <div class="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between h-16 md:h-18">
         <a href="index.html" class="font-display text-xl md:text-2xl font-bold tracking-tight text-cream">
             GreeTalian <span class="text-warm-400">Grill</span>
