@@ -86,7 +86,7 @@
         .img-hover:hover img { transform: scale(1.06); }
 
         .nav-glass {
-            background: rgba(26, 20, 16, 0.97);
+            background: #1A1410;
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(212, 168, 83, 0.12);
@@ -342,7 +342,7 @@
 </section>
 
 <!-- All content below hero gets solid background to prevent food image bleed-through -->
-<div id="main-content" class="relative z-20" style="background: #1A1410;">
+<div id="main-content" class="relative z-20" style="background: #1A1410; visibility: hidden;">
 
 <!-- MARQUEE -->
 <div class="overflow-hidden py-4 border-y border-warm-400/10">
@@ -1141,6 +1141,7 @@
         const heroContent = document.getElementById('hero-content');
         const heroOverlay = document.getElementById('hero-overlay');
         const heroSection = document.getElementById('scroll-hero');
+        const mainContent = document.getElementById('main-content');
 
         const isMobile = () => window.innerWidth < 768;
 
@@ -1194,6 +1195,7 @@
                 heroSection.style.minHeight = '100dvh';
                 heroContent.classList.add('visible');
                 heroOverlay.classList.add('visible');
+                mainContent.style.visibility = 'visible';
 
                 // Position media as full-bleed background at top
                 heroMedia.style.position = 'fixed';
@@ -1204,6 +1206,7 @@
             } else {
                 heroContent.classList.remove('visible');
                 heroOverlay.classList.remove('visible');
+                mainContent.style.visibility = 'hidden';
                 heroMedia.style.position = 'absolute';
                 heroMedia.style.top = '50%';
                 heroMedia.style.left = '50%';
