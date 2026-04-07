@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | GreeTalian Grill Food Truck | Raleigh, NC</title>
+    <meta name="description" content="Meet Chef Ayman and the family behind GreeTalian Grill Food Truck. Authentic Jordanian flavors on Hillsborough Street, Raleigh, NC since 2019.">
+    <meta name="theme-color" content="#1A1410">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700&family=Noto+Kufi+Arabic:wght@400;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#F5EDE0',
+                        'cream-dark': '#E8D9C5',
+                        warm: {
+                            50: '#FDF8F0',
+                            100: '#F9EDDA',
+                            200: '#F0D9B5',
+                            300: '#E4C08A',
+                            400: '#D4A853',
+                            500: '#C8930A',
+                            600: '#A67708',
+                            700: '#7D5A06',
+                            800: '#543D04',
+                            900: '#2B1F02',
+                        },
+                        earth: {
+                            900: '#1A1410',
+                            800: '#2A2118',
+                            700: '#3D3228',
+                            600: '#524538',
+                            500: '#6B5B4B',
+                        },
+                    },
+                    fontFamily: {
+                        display: ['Playfair Display', 'serif'],
+                        body: ['DM Sans', 'sans-serif'],
+                        arabic: ['Noto Kufi Arabic', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; background: #1A1410; color: #F5EDE0; overflow-x: hidden; }
+
+        .grain::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            pointer-events: none;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        .nav-glass {
+            background: rgba(26, 20, 16, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(212, 168, 83, 0.12);
+        }
+
+        .btn-warm {
+            background: linear-gradient(135deg, #D4A853, #C8930A);
+            color: #1A1410;
+            font-weight: 600;
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s;
+        }
+        .btn-warm:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(212, 168, 83, 0.3); }
+        .btn-warm:active { transform: translateY(0) scale(0.98); }
+        .btn-warm:focus-visible { outline: 2px solid #D4A853; outline-offset: 3px; }
+
+        .btn-outline {
+            border: 1.5px solid rgba(212, 168, 83, 0.5);
+            color: #D4A853;
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s, border-color 0.3s;
+        }
+        .btn-outline:hover { background: rgba(212, 168, 83, 0.1); border-color: #D4A853; transform: translateY(-1px); }
+        .btn-outline:active { transform: scale(0.98); }
+        .btn-outline:focus-visible { outline: 2px solid #D4A853; outline-offset: 3px; }
+
+        .divider-warm { height: 1px; background: linear-gradient(90deg, transparent, rgba(212, 168, 83, 0.3), transparent); }
+
+        .img-hover { overflow: hidden; }
+        .img-hover img { transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+        .img-hover:hover img { transform: scale(1.06); }
+
+        @keyframes glow-pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 0.7; } }
+        .glow-pulse { animation: glow-pulse 3s ease-in-out infinite; }
+
+        .star { color: #D4A853; }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #1A1410; }
+        ::-webkit-scrollbar-thumb { background: #3D3228; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #524538; }
+
+        /* Parallax tilt on about hero image */
+        .about-hero-img {
+            transition: transform 0.15s ease-out;
+        }
+
+        /* Quote block accent */
+        .quote-accent {
+            position: relative;
+        }
+        .quote-accent::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #D4A853, rgba(212, 168, 83, 0.1));
+            border-radius: 2px;
+        }
+
+        /* Timeline line */
+        .timeline-line {
+            position: relative;
+        }
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, rgba(212, 168, 83, 0.3), rgba(212, 168, 83, 0.05));
+        }
+        @media (min-width: 768px) {
+            .timeline-line::before {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+</head>
+<body class="grain">
+
+<!-- NAV -->
+<nav class="nav-glass fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between h-16 md:h-18">
+        <a href="index.html" class="font-display text-xl md:text-2xl font-bold tracking-tight text-cream">
+            GreeTalian <span class="text-warm-400">Grill</span>
+        </a>
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium text-cream/70">
+            <a href="index.html#menu" class="hover:text-warm-400 transition-colors duration-300">Menu</a>
+            <a href="index.html#kunafa" class="hover:text-warm-400 transition-colors duration-300">Kunafa</a>
+            <a href="index.html#catering" class="hover:text-warm-400 transition-colors duration-300">Catering</a>
+            <a href="index.html#gallery" class="hover:text-warm-400 transition-colors duration-300">Gallery</a>
+            <a href="index.html#reviews" class="hover:text-warm-400 transition-colors duration-300">Reviews</a>
+            <a href="about.html" class="text-warm-400 transition-colors duration-300">About</a>
+            <a href="index.html#find-us" class="btn-warm px-5 py-2 rounded-full text-sm">Find Us</a>
+        </div>
+        <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden text-cream/70 hover:text-warm-400 transition-colors" aria-label="Toggle menu">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-warm-400/10 pb-4">
+        <div class="flex flex-col gap-1 px-5 pt-2">
+            <a href="index.html#menu" class="py-2.5 text-cream/70 hover:text-warm-400 transition-colors text-sm font-medium">Menu</a>
+            <a href="index.html#kunafa" class="py-2.5 text-cream/70 hover:text-warm-400 transition-colors text-sm font-medium">Kunafa</a>
+            <a href="index.html#catering" class="py-2.5 text-cream/70 hover:text-warm-400 transition-colors text-sm font-medium">Catering</a>
+            <a href="index.html#gallery" class="py-2.5 text-cream/70 hover:text-warm-400 transition-colors text-sm font-medium">Gallery</a>
+            <a href="index.html#reviews" class="py-2.5 text-cream/70 hover:text-warm-400 transition-colors text-sm font-medium">Reviews</a>
+            <a href="about.html" class="py-2.5 text-warm-400 text-sm font-medium">About</a>
+            <a href="index.html#find-us" class="btn-warm px-5 py-2.5 rounded-full text-sm text-center mt-2">Find Us</a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO — Split Layout (Left text, Right image) -->
+<section class="min-h-[100dvh] flex items-center relative overflow-hidden pt-20 pb-16">
+    <!-- Background glow -->
+    <div class="absolute inset-0 pointer-events-none">
+        <div class="absolute top-1/3 right-0 w-[500px] h-[500px] bg-warm-400/6 rounded-full blur-[150px]"></div>
+        <div class="absolute bottom-0 left-1/4 w-[300px] h-[300px] bg-warm-400/4 rounded-full blur-[100px]"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-5 md:px-8 w-full relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
+            <!-- Left: Text -->
+            <div>
+                <div class="reveal inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-warm-400/30 bg-warm-400/5 mb-6">
+                    <span class="w-1.5 h-1.5 rounded-full bg-warm-400 glow-pulse"></span>
+                    <span class="text-warm-400 text-xs font-medium tracking-wider uppercase">Our Story</span>
+                </div>
+                <h1 class="reveal reveal-delay-1 font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-[0.9] tracking-tighter text-cream mb-6">
+                    Family recipes,<br>
+                    <span class="text-warm-400 italic">made with love</span>
+                </h1>
+                <p class="reveal reveal-delay-2 text-cream/55 text-base md:text-lg leading-relaxed max-w-md mb-8">
+                    Chef Ayman and his family bring the authentic flavors of Jordan to Raleigh's Hillsborough Street. Every wrap is hand-rolled, every spice is carefully measured, and every customer feels like family.
+                </p>
+                <div class="reveal reveal-delay-3 flex flex-wrap gap-4">
+                    <a href="index.html#menu" class="btn-warm px-7 py-3 rounded-full text-sm tracking-wide">View Our Menu</a>
+                    <a href="tel:9197448619" class="btn-outline px-7 py-3 rounded-full text-sm tracking-wide">Call Us</a>
+                </div>
+            </div>
+
+            <!-- Right: Image -->
+            <div class="reveal reveal-delay-2">
+                <div class="img-hover rounded-2xl overflow-hidden relative">
+                    <img src="greet.jpg" alt="GreeTalian Grill Food Truck on Hillsborough Street" class="w-full aspect-[4/5] md:aspect-[3/4] object-cover about-hero-img">
+                    <div class="absolute inset-0 bg-gradient-to-t from-earth-900/60 via-transparent to-transparent"></div>
+                    <div class="absolute inset-0 bg-warm-400/5 mix-blend-multiply"></div>
+                    <!-- Glass info bar at bottom -->
+                    <div class="absolute bottom-0 left-0 right-0 p-5" style="background: rgba(26, 20, 16, 0.7); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-top: 1px solid rgba(212, 168, 83, 0.15);">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-cream text-sm font-medium">Chef Ayman</p>
+                                <p class="text-cream/40 text-xs mt-0.5">Owner & Head Chef</p>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <svg class="star w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                <span class="text-warm-400 text-sm font-semibold">4.8</span>
+                                <span class="text-cream/40 text-xs ml-1">(70 reviews)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider-warm max-w-7xl mx-auto"></div>
+
+<!-- STATS BAR -->
+<section class="py-16 md:py-20">
+    <div class="max-w-7xl mx-auto px-5 md:px-8">
+        <div class="reveal grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+            <div class="text-center py-6 rounded-xl bg-warm-400/5 border border-warm-400/10" style="box-shadow: inset 0 1px 0 rgba(212, 168, 83, 0.08);">
+                <div class="font-display text-3xl md:text-4xl font-bold text-warm-400">4.8</div>
+                <div class="text-xs text-cream/40 mt-1.5 tracking-wider uppercase">Star Rating</div>
+            </div>
+            <div class="text-center py-6 rounded-xl bg-warm-400/5 border border-warm-400/10" style="box-shadow: inset 0 1px 0 rgba(212, 168, 83, 0.08);">
+                <div class="font-display text-3xl md:text-4xl font-bold text-warm-400">7</div>
+                <div class="text-xs text-cream/40 mt-1.5 tracking-wider uppercase">Days a Week</div>
+            </div>
+            <div class="text-center py-6 rounded-xl bg-warm-400/5 border border-warm-400/10" style="box-shadow: inset 0 1px 0 rgba(212, 168, 83, 0.08);">
+                <div class="font-display text-3xl md:text-4xl font-bold text-warm-400">1200+</div>
+                <div class="text-xs text-cream/40 mt-1.5 tracking-wider uppercase">People Catered</div>
+            </div>
+            <div class="text-center py-6 rounded-xl bg-warm-400/5 border border-warm-400/10" style="box-shadow: inset 0 1px 0 rgba(212, 168, 83, 0.08);">
+                <div class="font-display text-3xl md:text-4xl font-bold text-warm-400">6+</div>
+                <div class="text-xs text-cream/40 mt-1.5 tracking-wider uppercase">Years Serving</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider-warm max-w-7xl mx-auto"></div>
+
+<!-- THE STORY — Zig-zag layout -->
+<section class="py-20 md:py-32">
+    <div class="max-w-7xl mx-auto px-5 md:px-8">
+
+        <!-- Block 1: Text left, Image right -->
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-16 items-center mb-20 md:mb-32">
+            <div class="md:col-span-3">
+                <span class="reveal text-warm-400 text-xs font-medium tracking-[0.2em] uppercase">The Beginning</span>
+                <h2 class="reveal reveal-delay-1 font-display text-3xl md:text-5xl font-bold tracking-tighter mt-3 mb-6 leading-tight">
+                    From Jordan<br><span class="text-warm-400 italic">to Raleigh</span>
+                </h2>
+                <p class="reveal reveal-delay-2 text-cream/55 leading-relaxed mb-5 max-w-lg">
+                    Chef Ayman brought recipes passed down through generations of his family. The flavors of Amman, Nablus, and the Jordanian countryside found a new home on Hillsborough Street, right outside Shahrazad Coffee.
+                </p>
+                <p class="reveal reveal-delay-3 text-cream/55 leading-relaxed max-w-lg">
+                    What started as a food truck quickly became a late-night institution. Word spread through the NC State campus and beyond: the shawarma is the real deal, and the kunafa is unlike anything else in the state.
+                </p>
+            </div>
+            <div class="md:col-span-2 reveal reveal-delay-2">
+                <div class="img-hover rounded-2xl overflow-hidden relative">
+                    <img src="photos/IMG_2975.jpg" alt="GreeTalian Grill Food Truck" class="w-full aspect-[3/4] object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-earth-900/50 to-transparent"></div>
+                    <div class="absolute inset-0 bg-warm-400/5 mix-blend-multiply"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Block 2: Image left, Text right (zig-zag) -->
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-16 items-center mb-20 md:mb-32">
+            <div class="md:col-span-2 reveal order-2 md:order-1">
+                <div class="img-hover rounded-2xl overflow-hidden relative">
+                    <img src="photos/IMG_0481.jpg" alt="Nabulsi-style kunafa being prepared" class="w-full aspect-[3/4] object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-earth-900/50 to-transparent"></div>
+                    <div class="absolute inset-0 bg-warm-400/5 mix-blend-multiply"></div>
+                </div>
+            </div>
+            <div class="md:col-span-3 order-1 md:order-2">
+                <span class="reveal text-warm-400 text-xs font-medium tracking-[0.2em] uppercase">Family First</span>
+                <h2 class="reveal reveal-delay-1 font-display text-3xl md:text-5xl font-bold tracking-tighter mt-3 mb-6 leading-tight">
+                    A true<br><span class="text-warm-400 italic">family business</span>
+                </h2>
+                <p class="reveal reveal-delay-2 text-cream/55 leading-relaxed mb-5 max-w-lg">
+                    This isn't a franchise or a chain. Chef Ayman runs the grill. His daughters help in the kitchen. Every customer gets treated like a guest in their home. That personal touch shows in every bite and every interaction.
+                </p>
+                <p class="reveal reveal-delay-3 text-cream/55 leading-relaxed max-w-lg">
+                    From intimate dinners to catering celebrations of over 1,200 people, the family scales with the same care. The food never changes. The love never wavers.
+                </p>
+            </div>
+        </div>
+
+        <!-- Block 3: Full-width quote -->
+        <div class="reveal max-w-3xl mx-auto text-center mb-20 md:mb-32">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" class="mx-auto mb-6 text-warm-400/30">
+                <path d="M10 11H6C6 7.686 8.686 5 12 5V3C7.582 3 4 6.582 4 11V19H10V11ZM20 11H16C16 7.686 18.686 5 22 5V3C17.582 3 14 6.582 14 11V19H20V11Z" fill="currentColor"/>
+            </svg>
+            <blockquote class="font-display text-2xl md:text-4xl font-semibold tracking-tight leading-snug text-cream/80 italic">
+                "Truly a taste of home. Reminds me of my mom's cooking!"
+            </blockquote>
+            <p class="text-warm-400/60 text-sm mt-6 font-medium tracking-wider uppercase">Sarah S &mdash; Google Review</p>
+        </div>
+
+        <!-- Block 4: What we're known for -->
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-16 items-center">
+            <div class="md:col-span-3">
+                <span class="reveal text-warm-400 text-xs font-medium tracking-[0.2em] uppercase">What We're Known For</span>
+                <h2 class="reveal reveal-delay-1 font-display text-3xl md:text-5xl font-bold tracking-tighter mt-3 mb-6 leading-tight">
+                    The best in<br><span class="text-warm-400 italic">North Carolina</span>
+                </h2>
+                <div class="reveal reveal-delay-2 space-y-4">
+                    <div class="quote-accent pl-5">
+                        <p class="text-cream/70 text-sm leading-relaxed italic">"By far the best Knafeh I've had in North Carolina."</p>
+                        <span class="text-cream/30 text-xs">N Odah</span>
+                    </div>
+                    <div class="quote-accent pl-5">
+                        <p class="text-cream/70 text-sm leading-relaxed italic">"Best Shawarma in town!! Real Jordanian tasting food."</p>
+                        <span class="text-cream/30 text-xs">George Smith</span>
+                    </div>
+                    <div class="quote-accent pl-5">
+                        <p class="text-cream/70 text-sm leading-relaxed italic">"Literally the best falafel I've had, hands down. My family has traveled a lot."</p>
+                        <span class="text-cream/30 text-xs">Carolyn</span>
+                    </div>
+                    <div class="quote-accent pl-5">
+                        <p class="text-cream/70 text-sm leading-relaxed italic">"We brought Chef Ayman to one of our events and he pleased our crowd of over 1,200 people."</p>
+                        <span class="text-cream/30 text-xs">Zeina Hasan</span>
+                    </div>
+                </div>
+            </div>
+            <div class="md:col-span-2 reveal reveal-delay-2">
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="img-hover rounded-xl overflow-hidden">
+                        <img src="photos/photo_04.jpg" alt="Beef shawarma wrap" class="w-full aspect-square object-cover">
+                    </div>
+                    <div class="img-hover rounded-xl overflow-hidden">
+                        <img src="photos/IMG_6439.jpg" alt="Fresh crispy falafel" class="w-full aspect-square object-cover">
+                    </div>
+                    <div class="img-hover rounded-xl overflow-hidden">
+                        <img src="photos/IMG_0558.jpg" alt="Chicken mansaf platter" class="w-full aspect-square object-cover">
+                    </div>
+                    <div class="img-hover rounded-xl overflow-hidden">
+                        <img src="photos/IMG_4014.jpg" alt="Pistachio baklava" class="w-full aspect-square object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider-warm max-w-7xl mx-auto"></div>
+
+<!-- WHAT TO EXPECT -->
+<section class="py-20 md:py-32 relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none">
+        <div class="absolute top-1/2 left-0 w-[400px] h-[400px] bg-warm-400/5 rounded-full blur-[120px]"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-5 md:px-8 relative z-10">
+        <div class="text-center mb-14">
+            <span class="reveal text-warm-400 text-xs font-medium tracking-[0.2em] uppercase">Visit Us</span>
+            <h2 class="reveal reveal-delay-1 font-display text-4xl md:text-6xl font-bold tracking-tighter mt-3">What to Expect</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="reveal rounded-xl border border-warm-400/10 p-6 md:p-8 hover:border-warm-400/20 transition-colors duration-300" style="box-shadow: inset 0 1px 0 rgba(212, 168, 83, 0.06);">
+                <div class="w-10 h-10 rounded-full bg-warm-400/10 flex items-center justify-center mb-4">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" class="text-warm-400"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
+                </div>
+                <h3 class="font-display text-xl font-semibold text-cream mb-2">Open Nightly</h3>
+                <p class="text-cream/50 text-sm leading-relaxed">We open at 6 PM, 7 days a week. Perfect for dinner, late-night cravings, or after an event. Come hungry.</p>
+            </div>
+
+            <div class="reveal reveal-delay-1 rounded-xl border border-warm-400/10 p-6 md:p-8 hover:border-warm-400/20 transition-colors duration-300" style="box-shadow: inset 0 1px 0 rgba(212, 168, 83, 0.06);">
+                <div class="w-10 h-10 rounded-full bg-warm-400/10 flex items-center justify-center mb-4">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" class="text-warm-400"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
+                </div>
+                <h3 class="font-display text-xl font-semibold text-cream mb-2">Easy to Find</h3>
+                <p class="text-cream/50 text-sm leading-relaxed">Parked outside Shahrazad Coffee on Hillsborough Street. Free parking lot and street parking available.</p>
+            </div>
+
+            <div class="reveal rounded-xl border border-warm-400/10 p-6 md:p-8 hover:border-warm-400/20 transition-colors duration-300" style="box-shadow: inset 0 1px 0 rgba(212, 168, 83, 0.06);">
+                <div class="w-10 h-10 rounded-full bg-warm-400/10 flex items-center justify-center mb-4">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" class="text-warm-400"><path d="M9 5H2v7l6.29 6.29c.94.94 2.48.94 3.42 0l4.58-4.58c.94-.94.94-2.48 0-3.42L9 5z"/><circle cx="6" cy="9" r="1"/></svg>
+                </div>
+                <h3 class="font-display text-xl font-semibold text-cream mb-2">100% Halal</h3>
+                <p class="text-cream/50 text-sm leading-relaxed">All our meat is halal certified. We accept credit cards, debit cards, and NFC/mobile payments.</p>
+            </div>
+
+            <div class="reveal reveal-delay-1 rounded-xl border border-warm-400/10 p-6 md:p-8 hover:border-warm-400/20 transition-colors duration-300" style="box-shadow: inset 0 1px 0 rgba(212, 168, 83, 0.06);">
+                <div class="w-10 h-10 rounded-full bg-warm-400/10 flex items-center justify-center mb-4">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" class="text-warm-400"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                </div>
+                <h3 class="font-display text-xl font-semibold text-cream mb-2">Catering Available</h3>
+                <p class="text-cream/50 text-sm leading-relaxed">From small gatherings to 1,200+ person events. Call or text Chef Ayman for a custom catering quote.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="divider-warm max-w-7xl mx-auto"></div>
+
+<!-- CTA -->
+<section class="py-20 md:py-32">
+    <div class="max-w-7xl mx-auto px-5 md:px-8">
+        <div class="reveal text-center max-w-2xl mx-auto">
+            <span class="text-warm-400 text-xs font-medium tracking-[0.2em] uppercase">Come Hungry</span>
+            <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tighter mt-3 mb-6 leading-tight">
+                Ready to<br><span class="text-warm-400 italic">taste the best?</span>
+            </h2>
+            <p class="text-cream/50 text-base leading-relaxed mb-8 max-w-md mx-auto">
+                3823 Hillsborough St, Raleigh, NC 27607. Open 7 days a week starting at 6 PM. Call, text, or just show up.
+            </p>
+            <div class="flex flex-wrap gap-4 justify-center">
+                <a href="index.html#menu" class="btn-warm px-8 py-3.5 rounded-full text-sm tracking-wide">View Full Menu</a>
+                <a href="tel:9197448619" class="btn-outline px-8 py-3.5 rounded-full text-sm tracking-wide inline-flex items-center gap-2">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                    (919) 744-8619
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-warm-400/10 py-10">
+    <div class="max-w-7xl mx-auto px-5 md:px-8">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="text-center md:text-left">
+                <a href="index.html" class="font-display text-xl font-bold tracking-tight text-cream">GreeTalian <span class="text-warm-400">Grill</span></a>
+                <p class="text-cream/30 text-xs mt-1">Authentic Middle Eastern Food Truck &mdash; Raleigh, NC</p>
+            </div>
+            <div class="flex items-center gap-6 text-cream/30 text-xs">
+                <a href="index.html#menu" class="hover:text-warm-400 transition-colors">Menu</a>
+                <a href="index.html#kunafa" class="hover:text-warm-400 transition-colors">Kunafa</a>
+                <a href="index.html#catering" class="hover:text-warm-400 transition-colors">Catering</a>
+                <a href="tel:9197448619" class="hover:text-warm-400 transition-colors">(919) 744-8619</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Reveal animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

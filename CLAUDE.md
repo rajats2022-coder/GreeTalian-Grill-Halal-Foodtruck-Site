@@ -1,7 +1,8 @@
 # CLAUDE.md — Frontend Website Rules
 
 ## Always Do First
-- **Invoke the `frontend-design` skill** before writing any frontend code, every session, no exceptions.
+- **Invoke the `design-taste-frontend` skill** before writing any frontend code, every session, no exceptions. This skill provides high-agency design engineering directives, anti-slop guardrails, and premium UI patterns.
+- Apply the design-taste principles (asymmetric layouts, zig-zag content blocks, tinted shadows, glass refraction borders, spring easing) while maintaining the existing warm/earth brand system.
 
 ## Reference Images
 - If a reference image is provided: match layout, spacing, typography, and color exactly. Swap in placeholder content (images via `https://placehold.co/`, generic copy). Do not improve or add to the design.

@@ -71,7 +71,7 @@ function send(method, params = {}) {
         pending.delete(id);
         reject(new Error(`Timeout: ${method}`));
       }
-    }, 8000);
+    }, 20000);
   });
 }
 
